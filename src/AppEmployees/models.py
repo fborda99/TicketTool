@@ -7,7 +7,7 @@ class Employee(models.Model):
     last_name=models.CharField(max_length=50)
     job_title=models.CharField(max_length=50) #dropdown
     email=models.EmailField() #agregar leyenda de que el dominio es de la empresa
-    work_id=models.IntegerField(max_length=6) #agregar leyenda de que son 6 dígitos
+    work_id=models.IntegerField() #agregar leyenda de que son 6 dígitos
     is_staff=0 #TESTEAR
 
     def __str__(self):
