@@ -1,3 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def it_team(request):
+    return render(request, "AppIT_Team/it_team.html")
