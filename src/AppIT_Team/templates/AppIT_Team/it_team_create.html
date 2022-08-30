@@ -1,0 +1,16 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block title %}Create IT member{% endblock title %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">Add a new member to the IT Team</h1>
+{% endblock header %}
+
+{% block content %}
+<form method="POST"> {% csrf_token %}
+    {{member.as_p}}
+    <input type="submit" value="Create new member">
+</form>
+{% endblock content %}
+
+

@@ -1,0 +1,14 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block title %}Update IT member{% endblock title %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">Update {{it_member.name}} {{it_member.lastname}}</h1>
+{% endblock header %}
+
+{% block contenido %} 
+    <form method="POST"> {% csrf_token %}
+        {{Update_Member.as_p}}
+        <input type="submit" value="Update">
+    </form>
+{% endblock contenido %}

@@ -1,0 +1,15 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block title %}Delete IT member{% endblock title %}
+
+{% block header %}
+<p class="display-5 fw-bolder text-white mb-2">Are you sure you would like to delete the IT member</p>
+<p class="display-5 fw-bolder text-white mb-2">"{{it_member.name}} {{it_member.lastname}}"?</p>
+{% endblock header %}
+
+{% block content %}
+<form method="POST"> {% csrf_token %}
+    <input type="submit" value="Confirm">
+    <a href="{% url 'IT_Team_List' %}">Return to IT Team list</a>
+</form>    
+{% endblock content %}

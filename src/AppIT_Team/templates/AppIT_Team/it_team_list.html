@@ -1,0 +1,22 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block title %}IT Team List{% endblock title %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">IT Team</h1>
+<p class="lead text-white-50 mb-4">Find below the members of the Ticket Tool support team</p>
+<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'IT_Team_Create' %}">Add New Member</a>
+{% endblock header %}
+
+{% block content %}
+<section class="py-5 border-bottom" id="features">
+    <div class="container px-5 my-5">
+    <h1><div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi-diagram-2"></i></div>     <u>IT Team Members</u></h1>
+                {% for member in object_list %}
+                <p><li><b>{{member}}</b> | <a href="{% url 'IT_Team_Detail' member.pk %}">See details</a> | <a href="{% url 'IT_Team_Update' member.pk %}">Update</a> | <a href="{% url 'IT_Team_Delete' member.pk %}">Delete </a></li></p>
+                {% endfor %}
+    </div>
+    </div>
+</section>
+{% endblock content %}
