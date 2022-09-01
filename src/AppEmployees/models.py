@@ -3,11 +3,11 @@ from django.db import models
 # Models for AppEmployees
 
 class Employee(models.Model):
-    first_name=models.CharField(max_length=50)
-    last_name=models.CharField(max_length=50)
-    job_title=models.CharField(max_length=50) #dropdown
+    name=models.CharField(max_length=50)
+    lastname=models.CharField(max_length=50)
+    job_title=models.CharField(max_length=50) 
     email=models.EmailField() #agregar leyenda de que el dominio es de la empresa
-    work_id=models.IntegerField() #agregar leyenda de que son 6 dígitos
+    workid=models.IntegerField() #agregar leyenda de que son 6 dígitos
     is_staff=0 #TESTEAR
 
     def __str__(self):

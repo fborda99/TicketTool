@@ -1,0 +1,31 @@
+{% extends 'AppEmployees/Employees.html' %}
+
+{% block title %} Employee - List {% endblock %}
+
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">Employees</h1>
+<p class="lead text-white-50 mb-4">Find below the list of employees</p>
+<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'employee_create' %}">Add a new Employee</a>
+{% endblock header %}
+
+
+{% block content %}
+
+<section class="py-5 border-bottom" id="features">
+    <div class="container px-5 my-5">
+    <h1><div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi-diagram-2"></i></div>  <u>Employees</u></h1>
+    {% for employee in employees %}
+
+    <p> Employee name: {{employee.name}} {{employee.lastname}}, {{employee.job_title}} | 
+    <a href="{% url 'employee_details' employee.pk %}"> Details </a>  |     
+    <a href="{% url 'employee_update' employee.pk %}"> Update </a>  | 
+    <a href="{% url 'employee_delete' employee.pk %}">Delete </a>
+
+        {% endfor %}
+    </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends 'AppEmployees/Employees.html' %}
+
+{% block title %}
+{{employee.name}} {{employee.lastname}}
+{% endblock title %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">{{employee.name}} {{employee.lastname}}</h1>
+<a class="btn btn-outline-light btn-lg px-4" href="{% url 'employee_delete' employee.pk %}">Delete Employee</a>
+{% endblock header %}
+
+{% block content %}
+<section class="py-5 border-bottom" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h1><div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi-file-earmark-person"></i></div>     <u>Details</u></h1>
+                <li><u>Name</u>: <b>{{employee.name}}</b>
+                <li><u>Last Name</u>: <b>{{employee.lastname}}</b>  
+                <li><u>Email</u>: <b>{{employee.email}}</b>
+                <li><u>Job Title</u>: <b>{{it_member.job_title}}</b>
+                <li><u>Work ID: <b>{{employee.workid}}</b>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

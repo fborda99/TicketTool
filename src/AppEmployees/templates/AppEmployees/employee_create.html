@@ -1,0 +1,14 @@
+{% extends 'AppEmployees/Employees.html' %}
+
+
+ {% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">Create employee</h1>
+{% endblock header %}
+
+{% block content %} 
+<form method="POST"> {% csrf_token %} 
+  {{employee.as_p}} 
+
+  <input type = "submit" value = "Create" >
+</form>
+{% endblock content %}

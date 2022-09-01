@@ -1,0 +1,15 @@
+{% extends 'AppEmployees/Employees.html' %}
+
+{% block title %} Update Employee Information {% endblock %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">Update {{employee.name}} {{employee.lastname}}</h1>
+{% endblock header %}
+
+{% block content %} 
+<form method="POST"> {% csrf_token %}
+  {{update_form.as_p}}
+  <input type="submit" value="Update">
+  <a href="{% url 'employee_list' %}">Return to employee list</a>
+</form>
+  {%endblock%}

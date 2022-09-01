@@ -1,0 +1,15 @@
+{% extends 'AppEmployees/Employees.html' %}
+
+{% block title %}Delete employee{% endblock title %}
+
+{% block header %}
+<p class="display-5 fw-bolder text-white mb-2">Are you sure you would like to delete the employee?</p>
+<p class="display-5 fw-bolder text-white mb-2">"{{it_member.name}} {{it_member.lastname}}"?</p>
+{% endblock header %}
+
+{% block content %}
+<form method="POST"> {% csrf_token %}
+    <input type="submit" value="Confirm">
+    <a href="{% url 'employee_list' %}">Return to employee list</a>
+</form>    
+{% endblock content %}
