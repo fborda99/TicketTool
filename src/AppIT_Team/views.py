@@ -39,8 +39,22 @@ class IT_TeamDelete(DeleteView):
     template_name = "AppIT_team/it_member_confirm_delete.html"
     success_url="/AppIT_Team/list/"
 
-class IT_TeamUpdate(UpdateView):
-    model=IT_Member
-    success_url="/AppIT_Team/list/"
-    fields=["name","lastname","email","jobtitle"]
-
+def IT_TeamUpdate(request,id_IT_Member):
+    if request.method=="GET":
+        update_form=Update_Member()
+        context={"update_form":update_form}
+        return render(request,"AppIT_Team\it_member_form.html",context)
+    else:
+        update_form=Update_Member(request.POST)
+        if update_form.is_valid():
+            data=update_form.cleaned_data
+            try:
+                it_member=IT_Member.objects.get(id=id_IT_Member)
+                it_member.name=data.get("name")
+                it_member.lastname=data.get("lastname")
+                it_member.email=data.get("email")
+                it_member.jobtitle=data.get("jobtitle")
+                it_member.save()
+            except:
+                return HttpResponse("Update error")
+        return redirect("IT_Team_List")

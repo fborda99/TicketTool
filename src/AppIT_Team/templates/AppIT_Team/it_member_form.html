@@ -6,9 +6,10 @@
 <h1 class="display-5 fw-bolder text-white mb-2">Update {{it_member.name}} {{it_member.lastname}}</h1>
 {% endblock header %}
 
-{% block contenido %} 
+{% block content %} 
     <form method="POST"> {% csrf_token %}
-        {{Update_Member.as_p}}
+        {{update_form.as_p}}
         <input type="submit" value="Update">
+        <a href="{% url 'IT_Team_List' %}">Return to IT Team list</a>
     </form>
-{% endblock contenido %}
+{% endblock content %}

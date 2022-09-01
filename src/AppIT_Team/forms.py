@@ -1,28 +1,24 @@
 from django.forms import Form, IntegerField, CharField, DateField, EmailField
+from django import forms
 from AppIT_Team.models import *
 
-#class IT_MemberForm(ModelForm):
-    #class Meta:
-     #   model = IT_Member
-      #  fields = ['job_title']
-
-#JOB_TITLES=(
- #   ("Associate","Associate"),
-  #  ("Senior Associate","Senior Associate"),
-   # ("Manager","Manager"),
-#    ("Senior Manager","Senior Manager"),
- #   ("Partner","Partner"),
-  #  ("Director","Director")
-#)
+JOB_TITLE_CHOICES=(
+    ("associate","Associate"),
+    ("aenior associate","Senior Associate"),
+    ("manager","Manager"),
+    ("senior manager","Senior Manager"),
+    ("partner","Partner"),
+    ("director","Director")
+)
 
 class Create_Member(Form):
-    name=CharField(max_length=50)
-    lastname=CharField(max_length=50)
+    name=CharField(max_length=50,label="First Name")
+    lastname=CharField(max_length=50,label="Last Name")
     email=EmailField()
-    jobtitle=CharField(max_length=50)#,choices=JOB_TITLES) #FALTA TERMINAR Y TESTEAR
+    jobtitle= forms.CharField(label="Job Title",widget=forms.Select(choices=JOB_TITLE_CHOICES))
 
 class Update_Member(Form):
-    name=CharField()
-    lastname=CharField()
+    name=CharField(label="First Name")
+    lastname=CharField(label="Last Name")
     email=EmailField()
-    jobtitle=CharField()#,choices=JOB_TITLES) #FALTA TERMINAR Y TESTEAR
+    jobtitle= forms.CharField(label="Job Title",widget=forms.Select(choices=JOB_TITLE_CHOICES))
