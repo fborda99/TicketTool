@@ -4,7 +4,7 @@ from AppIT_Team.models import *
 from AppIT_Team.forms import *
 from django.http import HttpResponse
 
-class IT_TeamList(ListView): #THIS IS THE INDEX OF THE APPIT_TEAM
+class IT_TeamList(ListView): 
     model=IT_Member
     template_name="AppIT_Team/it_team_list.html"
 
@@ -58,3 +58,6 @@ def IT_TeamUpdate(request,id_IT_Member):
             except:
                 return HttpResponse("Update error")
         return redirect("IT_Team_List")
+
+def it_team_homepage(request):
+    return render(request, "AppIT_Team/it_team_homepage.html")

@@ -41,8 +41,6 @@ def EmployeeCreate(request):
         else:
             return HttpResponse("The form for creating the employee is not valid. Please try again!")
 
-
-
 class EmployeeDelete(DeleteView):
      model = Employee
      template_name = "AppEmployees/employee_confirm_delete.html"
@@ -74,3 +72,6 @@ def EmployeeUpdate(request, id_employee):
 class EmployeeDeatailView(DetailView):
     model=Employee
     template_name = "AppEmployees/employees_detailview.html"
+
+def employee_homepage(request):
+    return render(request, "AppEmployees/employees_homepage.html")

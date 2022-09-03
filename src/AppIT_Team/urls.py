@@ -3,6 +3,7 @@ from AppIT_Team.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
+    path("homepage/",it_team_homepage,name="homepage_it"),
     path("list/",IT_TeamList.as_view(),name="IT_Team_List"),
     path("create/",IT_TeamCreate,name="IT_Team_Create"),
     path("detail/<pk>",IT_TeamDetail.as_view(),name="IT_Team_Detail"),

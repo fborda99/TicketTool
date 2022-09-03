@@ -1,0 +1,18 @@
+{% extends 'AppTickets/index.html' %}
+
+{% block header %}
+Register IT User
+{% endblock header %}
+
+
+{% block content %}
+{% if error %}
+    <p style="color: red">{{error}}</p>
+{% endif %}
+    
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Register</button>
+</form>
+{% endblock content %}

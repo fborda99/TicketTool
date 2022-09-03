@@ -22,8 +22,9 @@ from AppMessages.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("AppTicket/", include("AppTickets.urls")),
+    path('homepage/',homepage, name='homepage'),
+    path("", include("AppTickets.urls")),
     path("AppIT_Team/", include("AppIT_Team.urls")),
     path("AppEmployees/", include("AppEmployees.urls")),
-    path("AppMessages/", include("AppMessages.urls"))
+    path("AppMessages/", include("AppMessages.urls")),
 ]
