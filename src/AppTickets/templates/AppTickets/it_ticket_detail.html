@@ -1,0 +1,41 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block title %}
+Ticket {{ticket.id}}
+{% endblock title %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2"> Ticket {{ticket.id}}</h1>
+{% endblock header %}
+
+{% block content %}
+<section class="bg-light py-5">
+    <div class="container px-5 my-5 px-5">
+        <div class="text-center mb-5">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi-list-task"></i></div>
+            <h2 class="fw-bolder">Details</h2>
+        </div>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                    <div class="form-floating mb-3">
+                        <h3>Ticket Number</h3>
+                        <p><li>{{ticket.id}}</p>
+                        <br><br>
+                        <h3>Status</h3>
+                        <p><li>{{ticket.status}}</p>
+                        <br><br>
+                        <h3>Date Open</h3>
+                        <p><li>{{ticket.date_open}}</p>
+                        <br><br>
+                        <h3>Category</h3>
+                        <p><li>{{ticket.category}}</p>
+                        <br><br>                        
+                        <h3>Description</h3>
+                        <p><li>{{ticket.description}}</p>
+                        <br><br>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'AppEmployees/Employees.html' %}
+
+{% block title %}Update Ticket{% endblock title %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2"> Ticket Form - Update</h1>
+{% endblock header %}
+
+{% block content %}
+<form method="POST"> {% csrf_token %}
+    {{update_form.as_p}}
+    <input type="submit" value="Update Status">
+    <a href="{% url 'ticket_list_employees' %}">Return to Ticket list</a>
+</form>
+{% endblock content %}

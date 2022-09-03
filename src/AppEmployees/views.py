@@ -9,16 +9,19 @@ from AppEmployees.models import *
 
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView, DetailView
 
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def employees(request):
     return render(request, "AppEmployees/employees.html")
 
+@login_required
 def employees(request):
     employess=Employee.objects.all()
     context={"employees":employess}
     return render(request, "appEmployees/Employees_list.html", context)
 
+@login_required
 def EmployeeCreate(request):
     if request.method == "GET":
         employee = EmployeeCreateForm
@@ -46,6 +49,7 @@ class EmployeeDelete(DeleteView):
      template_name = "AppEmployees/employee_confirm_delete.html"
      success_url = "/AppEmployees/employees/"
 
+@login_required
 def EmployeeUpdate(request, id_employee):
     if request.method=="GET":
         update_form=EmployeeEditForm()
@@ -73,5 +77,6 @@ class EmployeeDeatailView(DetailView):
     model=Employee
     template_name = "AppEmployees/employees_detailview.html"
 
+@login_required
 def employee_homepage(request):
     return render(request, "AppEmployees/employees_homepage.html")

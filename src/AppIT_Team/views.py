@@ -3,15 +3,19 @@ from django.views.generic import ListView,DetailView,CreateView,DeleteView,Updat
 from AppIT_Team.models import *
 from AppIT_Team.forms import *
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+
 
 class IT_TeamList(ListView): 
     model=IT_Member
     template_name="AppIT_Team/it_team_list.html"
 
+
 class IT_TeamDetail(DetailView):
     model=IT_Member
     template_name="AppIT_Team/it_team_detail.html"
 
+@login_required
 def IT_TeamCreate(request):
     if request.method == "GET":
         member = Create_Member
@@ -33,12 +37,14 @@ def IT_TeamCreate(request):
 
         else:
             return HttpResponse("The form for creating the new member is not valid. Please try again!")
-    
+
+   
 class IT_TeamDelete(DeleteView):
     model=IT_Member
     template_name = "AppIT_team/it_member_confirm_delete.html"
     success_url="/AppIT_Team/list/"
 
+@login_required
 def IT_TeamUpdate(request,id_IT_Member):
     if request.method=="GET":
         update_form=Update_Member()
@@ -59,5 +65,6 @@ def IT_TeamUpdate(request,id_IT_Member):
                 return HttpResponse("Update error")
         return redirect("IT_Team_List")
 
+@login_required
 def it_team_homepage(request):
     return render(request, "AppIT_Team/it_team_homepage.html")
