@@ -21,11 +21,12 @@ class EmployeeUserCustomCreationForm(UserCreationForm):
 class IT_TeamUserCustomCreationForm(UserCreationForm):
     email=EmailField()
     password1=CharField(label="Password",widget=PasswordInput)
-    password2=CharField(label="Confirm Paasword",widget=PasswordInput)
-    is_staff = 1
+    password2=CharField(label="Confirm Password",widget=PasswordInput)
+#    is_staff = True
  
     class Meta:
         model=User
+        #User.is_staff=True
         fields=["username","email","password1","password2"]
         help_texts={"username":"","email":"", "password1":"", "password2":""}
 
@@ -46,8 +47,7 @@ class Create_Ticket(Form):
     date_open = DateField(initial= datetime.now, label="Date Open")
     category = forms.CharField(label="Category",widget=forms.Select(choices=TICKET_CATEGORIES))
     description = CharField(max_length=500,label="Description")
-    status = CharField(initial="Open") #forms.CharField(label="Status",widget=forms.Select(choices=TICKET_STATUS))
-
+    status = CharField(initial="Open") 
 
 class Update_Ticket(Form):
     status = forms.CharField(label="Status",widget=forms.Select(choices=TICKET_STATUS))

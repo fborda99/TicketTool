@@ -1,0 +1,24 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block title %} Profile {% endblock title %}
+
+
+{% block header %}
+
+{% if request.user.is_authenticated %}
+    <div class="container text-center">
+        <h1 class="display-5 fw-bolder text-white mb-2">{{request.user.username}}</h1>
+    <br><br>
+        <img src="{{avatar}}" alt="Avatar" style=”max-width: 10px;”>
+    <br><br>
+    </div>
+{% endif %}
+
+<p class="display-5 fw-bolder text-white mb-2">{{request.user.email}}</p>
+<br><br>
+<a class="btn btn-primary btn-lg px-4 me-sm-3" href= "{% url 'it_edit_user_email' %}">Update Email</a>
+<a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'it_edit_user_password' %}">Update Password</a>
+<br><br>
+<a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'it_add_avatar' %}">Upload Avatar</a>
+
+{% endblock header %}

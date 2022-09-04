@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
-#form creation
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
 from AppEmployees.forms import *
 from AppEmployees.models import *
-
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView, DetailView
+from AppIT_Team.models import Avatar
 
+#User
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -72,7 +73,6 @@ def EmployeeUpdate(request, id_employee):
                 return HttpResponse("Update error")
         return redirect("employee_list")
 
-
 class EmployeeDeatailView(DetailView):
     model=Employee
     template_name = "AppEmployees/employees_detailview.html"
@@ -80,3 +80,67 @@ class EmployeeDeatailView(DetailView):
 @login_required
 def employee_homepage(request):
     return render(request, "AppEmployees/employees_homepage.html")
+
+@login_required
+def employee_profile_user(request):
+    try:
+        avatar = Avatar.objects.filter(user = request.user).first()
+        avatar_context = {"avatar":avatar.image.url}
+        return render(request,"AppEmployees/employee_user_profile.html",avatar_context)
+    except:
+        return render(request,"AppEmployees/employee_user_profile.html")
+
+@login_required
+def employee_edit_user_email(request):
+    if request=="GET":
+        form=EmployeeUserEditEmailForm()
+        return render(request,"AppEmployees/employee_user_update_email.html",{"form":form})
+    
+    else:
+        form=EmployeeUserEditEmailForm(request.POST)
+    
+        if form.is_valid():
+            data=form.cleaned_data
+            user_it=request.user
+            user_it.email=data["email"]
+            user_it.save()
+            return redirect("employee_profile_user")
+        
+        else:
+            return render(request,"AppEmployees/employee_user_update_email.html",{"form":form})
+
+@login_required
+def employee_edit_user_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user) 
+            return redirect('employee_user_password_confirm')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'AppEmployees/employee_user_update_password.html', {'form': form })
+
+@login_required
+def employee_user_password_confirm(request):
+    return render(request,"AppEmployees/employee_user_password_confirm.html")
+
+@login_required
+def employee_add_avatar(request):
+    if request.method == "GET":
+        form=EmployeeAvatarForm()
+        context={"form":form}
+        return render(request,"AppEmployees/employee_user_add_avatar.html",context)
+ 
+    else:
+        form=EmployeeAvatarForm(request.POST,request.FILES)
+ 
+        if form.is_valid():
+            data=form.cleaned_data
+            user=User.objects.filter(username=request.user.username).first()
+            avatar=Avatar(user=user,image=data["image"])
+            avatar.save()
+            return render(request,"AppEmployees/employees_homepage.html")
+

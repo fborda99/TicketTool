@@ -1,6 +1,10 @@
-from django.forms import Form, IntegerField, CharField, DateField, EmailField
+from django.forms import Form, IntegerField, CharField, DateField, EmailField, PasswordInput, ImageField
 from django import forms
 from AppIT_Team.models import *
+
+#User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 JOB_TITLE_CHOICES=(
     ("associate","Associate"),
@@ -22,3 +26,14 @@ class Update_Member(Form):
     lastname=CharField(label="Last Name")
     email=EmailField()
     jobtitle= forms.CharField(label="Job Title",widget=forms.Select(choices=JOB_TITLE_CHOICES))
+
+class ITUserEditEmailForm(Form):
+    email=EmailField(label="Email")
+ 
+    class Meta:
+        model=User
+        fields=["email"]
+        help_texts={"email":""}
+
+class ITAvatarForm(Form):
+    image=ImageField()

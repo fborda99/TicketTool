@@ -21,7 +21,45 @@ def index(request):
 def ticket(request):
     return render(request, "AppTickets/tickets.html")
 
-def login_user(request):
+def login_user_employee(request):
+    if request.method == "GET":
+        form=AuthenticationForm()
+        context={"form":form}
+        return render(request,"AppTickets/login.html",context)
+        
+    else:
+        form = AuthenticationForm(request,data=request.POST)
+ 
+        if form.is_valid():
+            data=form.cleaned_data
+            user=authenticate(username=data.get("username"),password=data.get("password"))
+ 
+            if user is not None:
+                auth_login(request,user)
+                if user.is_staff == 0:
+                    return redirect("employee_list")
+                else:
+                    context={
+                        "error":"You are not registered as an Employee. Please try again.",
+                        "form": form
+                    }
+                    return render(request,"AppTickets/login.html",context)
+        
+            else:
+                context={
+                    "error":"Please enter valid credentials",
+                    "form": form
+                }
+                return render(request,"AppTickets/login.html",context)
+            
+        else:
+            context={
+            "error":"Please enter valid credentials",
+            "form": form
+            }
+            return render(request,"AppTickets/login.html",context)
+
+def login_user_it(request):
     if request.method == "GET":
         form=AuthenticationForm()
         context={"form":form}
@@ -39,14 +77,18 @@ def login_user(request):
                 if user.is_staff == 1:
                     return redirect("IT_Team_List")
                 else:
-                    return redirect("employee_list")
+                    context={
+                    "error":"You are not registered as an IT Memeber. Please try again.",
+                    "form": form
+                    }
+                    return render(request,"AppTickets/login.html",context)
         
             else:
                 context={
-                    "error":"Please enter valid credentials",
+                    "error":"Please enter valid credentials.",
                     "form": form
                 }
-                return (request,"AppTickets/login.html",context)
+                return render(request,"AppTickets/login.html",context)
             
         else:
             context={
@@ -72,15 +114,16 @@ def register_employee(request):
 
 def register_it(request):
     if request.method == "GET":
-        form=IT_TeamUserCustomCreationForm()
+        form=IT_TeamUserCustomCreationForm()#(initial={User.is_staff: True})
         return render(request,"AppTickets/register_it_team.html",{"form":form})
         
     else:
         form=IT_TeamUserCustomCreationForm(request.POST)
     
     if form.is_valid():
+     #   form.is_staff=True
         form.save()
-        return redirect("IT_Team_List")
+        return redirect("homepage")
     
     else:
         return render(request,"AppTickets/register_it_team.html",{"form":form,"error":"Form not valid."})
@@ -156,3 +199,4 @@ def update_ticket_it(request,id_ticket):
             except:
                 return HttpResponse("Update error")
         return redirect("ticket_list_it")
+

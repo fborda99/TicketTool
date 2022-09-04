@@ -1,0 +1,10 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block title %}Upload Avatar{% endblock title %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Upload Avatar">
+</form>
+{% endblock content %}

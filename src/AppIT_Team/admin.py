@@ -3,3 +3,4 @@ from AppIT_Team.models import *
 
 # Register your models here.
 admin.site.register(IT_Member)
+admin.site.register(Avatar)

@@ -3,13 +3,17 @@ from django.views.generic import ListView,DetailView,CreateView,DeleteView,Updat
 from AppIT_Team.models import *
 from AppIT_Team.forms import *
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
 
+#User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 class IT_TeamList(ListView): 
     model=IT_Member
     template_name="AppIT_Team/it_team_list.html"
-
 
 class IT_TeamDetail(DetailView):
     model=IT_Member
@@ -37,7 +41,6 @@ def IT_TeamCreate(request):
 
         else:
             return HttpResponse("The form for creating the new member is not valid. Please try again!")
-
    
 class IT_TeamDelete(DeleteView):
     model=IT_Member
@@ -68,3 +71,67 @@ def IT_TeamUpdate(request,id_IT_Member):
 @login_required
 def it_team_homepage(request):
     return render(request, "AppIT_Team/it_team_homepage.html")
+
+@login_required
+def it_profile_user(request):
+    try:
+        avatar = Avatar.objects.filter(user = request.user).first()
+        avatar_context = {"avatar":avatar.image.url}
+        return render(request,"AppIT_Team/it_user_profile.html",avatar_context)
+    except:
+        return render(request,"AppIT_Team/it_user_profile.html")
+
+@login_required
+def it_edit_user_email(request):
+    if request=="GET":
+        form=ITUserEditEmailForm()
+        return render(request,"AppIT_Team/it_user_update_email.html",{"form":form})
+    
+    else:
+        form=ITUserEditEmailForm(request.POST)
+    
+        if form.is_valid():
+            data=form.cleaned_data
+            user_it=request.user
+            user_it.email=data["email"]
+            user_it.save()
+            return redirect("it_profile_user")
+        
+        else:
+            return render(request,"AppIT_Team/it_user_update_email.html",{"form":form})
+
+@login_required
+def it_edit_user_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user) 
+            return redirect('it_user_password_confirm')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'AppIT_Team/it_user_update_password.html', {'form': form })
+
+@login_required
+def it_user_password_confirm(request):
+    return render(request,"AppIT_Team/it_user_password_confirm.html")
+
+@login_required
+def it_add_avatar(request):
+    if request.method == "GET":
+        form=ITAvatarForm()
+        context={"form":form}
+        return render(request,"AppIT_Team/it_user_add_avatar.html",context)
+ 
+    else:
+        form=ITAvatarForm(request.POST,request.FILES)
+ 
+        if form.is_valid():
+            data=form.cleaned_data
+            user=User.objects.filter(username=request.user.username).first()
+            avatar=Avatar(user=user,image=data["image"])
+            avatar.save()
+            return render(request,"AppIT_Team/it_team_homepage.html")
+

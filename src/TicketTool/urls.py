@@ -19,6 +19,8 @@ from AppTickets.views import *
 from AppIT_Team.views import *
 from AppEmployees.views import *
 from AppMessages.views import *
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,3 +30,5 @@ urlpatterns = [
     path("AppEmployees/", include("AppEmployees.urls")),
     path("AppMessages/", include("AppMessages.urls")),
 ]
+
+urlpatterns+= static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
