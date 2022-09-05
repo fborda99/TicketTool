@@ -10,7 +10,7 @@ from datetime import datetime
 class EmployeeUserCustomCreationForm(UserCreationForm):
     email=EmailField()
     password1=CharField(label="Password",widget=PasswordInput)
-    password2=CharField(label="Confirm Paasword",widget=PasswordInput)
+    password2=CharField(label="Confirm Password",widget=PasswordInput)
     is_staff = 0
  
     class Meta:

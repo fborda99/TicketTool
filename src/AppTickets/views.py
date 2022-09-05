@@ -37,7 +37,7 @@ def login_user_employee(request):
             if user is not None:
                 auth_login(request,user)
                 if user.is_staff == 0:
-                    return redirect("employee_list")
+                    return redirect("homepage_employee")
                 else:
                     context={
                         "error":"You are not registered as an Employee. Please try again.",
@@ -75,7 +75,7 @@ def login_user_it(request):
             if user is not None:
                 auth_login(request,user)
                 if user.is_staff == 1:
-                    return redirect("IT_Team_List")
+                    return redirect("homepage_it")
                 else:
                     context={
                     "error":"You are not registered as an IT Memeber. Please try again.",

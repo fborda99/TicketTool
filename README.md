@@ -4,6 +4,8 @@ TICKET TOOL
 
     The project was developed by Thomas Bransburg and Florencia Borda. In general terms, Thomas developed the AppEmployees and Florencia the AppIT_Team. Then, together they created the AppTickets and AppMessages.
 
+    Note: In order to visualize the testing documentation in Visual Studio Code you will need to install the Excel Viewer Extension.
+
 DEMO VIDEO
 
     Link to a video demonstrating how the website works: 

@@ -6,13 +6,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 JOB_TITLE_CHOICES=(
-    ("",""),
-    ("associate","Associate"),
-    ("aenior associate","Senior Associate"),
-    ("manager","Manager"),
-    ("senior manager","Senior Manager"),
-    ("partner","Partner"),
-    ("director","Director")
+    ("Associate","Associate"),
+    ("Senior Associate","Senior Associate"),
+    ("Manager","Manager"),
+    ("Senior Manager","Senior Manager"),
+    ("Partner","Partner"),
+    ("Director","Director")
 )
 
 class EmployeeCreateForm(Form):
