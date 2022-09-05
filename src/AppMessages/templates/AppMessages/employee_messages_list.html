@@ -1,13 +1,13 @@
-{% extends 'AppIT_Team/it_team.html' %}
+{% extends 'AppEmployees/Employees.html' %}
 
 {% block title %}List of Message{% endblock title %}
 
 {% block header %}
 <h1 class="display-5 fw-bolder text-white mb-2">Ticket messages</h1>
 <br><br>
-<a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'it_message_create' %}">Send a new message</a>
+<a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'employee_message_create' %}">Send a new message</a>
 <br><br>
-<a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'it_message_search' %}">Search messages by ticket number</a>
+<a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'employee_message_search' %}">Search messages by ticket number</a>
 {% endblock header %}
 
 {% block content %} 

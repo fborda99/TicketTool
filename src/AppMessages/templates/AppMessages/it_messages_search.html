@@ -1,0 +1,17 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block title %}Messages Search{% endblock title %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">Messages Search</h1>
+{% endblock header %}
+
+{% block content %} 
+<h1>Ticket Number</h1>
+<form action="{% url 'it_message_results' %}" method="get">
+<p>
+    <input type="text" name="ticket_number">
+    <input type="submit" value="Search">
+</p>
+</form>
+{% endblock content %}

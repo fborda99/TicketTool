@@ -1,0 +1,19 @@
+{% extends 'AppEmployees/Employees.html' %}
+
+{% block title %}Messages Results{% endblock title %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">Messages Results</h1>
+<br><br>
+<a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'employee_message_create' %}">Send a new message</a>
+<br><br>
+<a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'employee_message_list' %}">Back to all ticket messages</a>
+{% endblock header %}
+
+{% block content %} 
+<br><br>
+{% for message in messages %}
+    <p><u>Ticket Number</u>: {{message.ticket_number}} | {{message.date_send}} | <b>{{message.send_by}}</b>: <i>"{{message.message}}"</i></p>
+{% endfor %}
+<br><br>
+{% endblock content %}

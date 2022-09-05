@@ -1,8 +1,6 @@
 {% extends 'AppEmployees/Employees.html' %}
 
-{% block title %}
-{{employee.name}} {{employee.lastname}}
-{% endblock title %}
+{% block title %}{{employee.name}} {{employee.lastname}}{% endblock title %}
 
 {% block header %}
 <h1 class="display-5 fw-bolder text-white mb-2">{{employee.name}} {{employee.lastname}}</h1>
