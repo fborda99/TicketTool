@@ -22,6 +22,7 @@ class IT_TeamUserCustomCreationForm(UserCreationForm):
     email=EmailField()
     password1=CharField(label="Password",widget=PasswordInput)
     password2=CharField(label="Confirm Password",widget=PasswordInput)
+   # is_staff = (default==1)
 #    is_staff = True
  
     class Meta:

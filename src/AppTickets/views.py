@@ -122,6 +122,7 @@ def register_it(request):
     
     if form.is_valid():
      #   form.is_staff=True
+      #  form.User.is_staff=True
         form.save()
         return redirect("homepage")
     

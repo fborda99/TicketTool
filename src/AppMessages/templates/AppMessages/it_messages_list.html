@@ -1,0 +1,17 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">Ticket messages</h1>
+{% endblock header %}
+
+{% block content %} 
+<section class="py-5 border-bottom" id="features">
+    <div class="container px-5 my-5">
+    <h1><div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi-diagram-2"></i></div>     <u>Ticket Messages</u></h1>
+            {% for message in object_list %}
+                <p>{{message.date_send}} | <b>{{message.send_by}}</b>: {{message.message}}</p>
+            {% endfor %}
+    </div>
+    </div>
+</section>
+{% endblock content %}

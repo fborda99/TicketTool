@@ -1,0 +1,12 @@
+{% extends 'AppIT_Team/it_team.html' %}
+
+{% block header %}
+<h1 class="display-5 fw-bolder text-white mb-2">Send a new message</h1>
+{% endblock header %}
+
+{% block content %} 
+<form method="POST"> {% csrf_token %} 
+  {{message.as_p}} 
+  <input type = "submit" value = "Send" >
+</form>
+{% endblock content %}
