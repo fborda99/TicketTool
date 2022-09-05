@@ -28,7 +28,7 @@ class Update_Member(Form):
     jobtitle= forms.CharField(label="Job Title",widget=forms.Select(choices=JOB_TITLE_CHOICES))
 
 class ITUserEditEmailForm(Form):
-    email=EmailField(label="Email")
+    email=EmailField(label="New Email")
  
     class Meta:
         model=User

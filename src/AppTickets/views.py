@@ -15,8 +15,8 @@ from AppTickets.forms import *
 def homepage(request):
     return render(request,"AppTickets/homepage.html" )
 
-def index(request):
-    return render(request, "AppTickets/index.html")
+def about(request):
+    return render(request, "AppTickets/about.html")
 
 def ticket(request):
     return render(request, "AppTickets/tickets.html")

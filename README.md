@@ -1,35 +1,28 @@
 TICKET TOOL
 
-    Ticket Tool es una página web que consiste en la creación de tickets por parte de usuarios de Ticket Tool, para que sean resueltos por un equipo de IT. Dichos tickets deben consistir en problemas tecnológicos que pueda presentar el usuario para el que requiere asistencia técnica. Este servicio puede ser utilizado por empresas que contratan Ticket Tool como solución para gestionar incidentes tecnológicos.
+    Ticket Tool is a web page that consists of the creation of tickets by employees, to be resolved by an IT team. Said tickets must consist of technological problems that the user may present for which technical assistance is required. This service can be used by companies that contract Ticket Tool as a solution to manage technological incidents.
 
-CÓMO INICIAR EL PROYECTO
+    The project was developed by Thomas Bransburg and Florencia Borda. In general terms, Thomas developed the AppEmployees and Florencia the AppIT_Team. Then, together they created the AppTickets and AppMessages.
 
-    Para inicializar la página, se deben seguir los siguientes pasos:
-    1) Descargar el proyecto en GitHub.
-    2) Abrir un entorno para poder trabajar el proyecto.
-    3) Ubicarse en la carpeta del proyecto en la que se encuentra el archivo manage.py.
-    4) Ejecutar el comando "python .\manage.py runserver"
-    5) Hacer ctrl + click en el URL de la terminal 
+DEMO VIDEO
 
-CLASES
+    Link to a video demonstrating how the website works: 
 
-    El proyecto consiste de tres clases:
-    1) Ticket: incidentes tecnológicos creados por usuarios que buscan asistencia técnica. Sus atributos son la fecha de creación, descripción, categoría y estado.
-    2) User: aquellos que tienen la posibilidad de crear tickets a través de la página para reportar problemas tecnológicos. Sus atributos son nombre, apellido, email y número de legajo.
-    3) Staff: miembros del equipo de IT que trabajan en la solución de los tickets creados por los usuarios. Sus atributos son nombre, apellido, email y puesto de trabajo.
+HOW TO START THE PROJECT
 
-VISUALES
+    To initialize the page, the following steps must be followed:
+        1) Download the project on GitHub.
+        2) Open an environment to be able to work on the project.
+        3) Go to the project folder where the manage.py file is located.
+        4) Run the command "python .\manage.py runserver"
+        5) ctrl + click on the URL of the terminal.
 
-    Al inicio de la página web se puede acceder a través del URL "/ticket/homepage/" o bien haceindo click en el botón "Ticket Tool" en la esquina superior izquierda de la pantalla. Al comienzo habrá una sección con dos botones, uno para crear y otro para buscar tickets cargados en la página. Debajo, hay tres secciones que contienen las distintas clases del proyecto, con un botón cada una que te permite visualizar listados de las bases de datos de cada una. Debajo, también se pueden ver testimonios de usuarios que utilizaron la página para la resolución de tickets. Al final, hay un formulario para ponerse en contacto con los desarrolladores de la página web.
+CLASSES
 
-    Para acceder a la sección de usuarios, se puede hacer click en el botón mencionado de la página de inicio o ingresando el URL "/ticket/users/". Allí se podrá ver un listado de los usuarios cargados a la base de datos. Además, hay un botón que permite crear nuevos usuarios al completar un formulario con los atributos de la clase User mencionada anteriormente y luego haciendo click en el botón que dice "Submit" (el URL correspondiente es "/ticket/createuser/").
+    1) Ticket: technological incidents created by users seeking technical assistance. Its attributes are the creation date, description, category and status.
 
-    Por otro lado, el URL para acceder a la sección de tickets es "/ticket/tickets/" en el cual se puede ver un listado de todos los tickets creados junto a sus atributos correspondientes. Además, hay un botón que permite crear un ticket nuevo (su URL es "/ticket/createticket/") y otro que permite buscar entre los tickets ya creados ("/ticket/ticketsearch/"); en ambos casos se deben completar los formularios y luego hacer click en el botón correspondiente. El link para acceder a los resultados de la búsqueda es "/ticket/ticketsearch_results/".
+    2) Employee: those who have the possibility of creating tickets through the page to report technological problems. Its attributes are name, lastname, email and workid. It's related to an Avatar class.
+    
+    3) IT_Member: Members of the IT team who work on the solution of the tickets created by the users. Its attributes are name, lastname, email and job title. It's related to an Avatar class.
 
-    Por último, el URL para acceder a la sección del equipo de IT es "/ticket/staff/" y allí se puede visualizar un listado de los miembros del staff. Además, hay un botón que permite agregar nuevos miembros a la base de datos (su URL es "/ticket/createstaff/"), debiendo completar el formulario correspondiente y luego hacer click en submit.
-
-
-
-
-
-
+    4) Message: communications between the employees and the IT Team. Its attributes are the message, sender and date.

@@ -30,7 +30,7 @@ class EmployeeEditForm(Form):
     workid=IntegerField(label = "workid") 
 
 class EmployeeUserEditEmailForm(Form):
-    email=EmailField(label="Email")
+    email=EmailField(label="New Email")
  
     class Meta:
         model=User

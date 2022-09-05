@@ -3,8 +3,8 @@ from AppTickets.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path("index/",index, name="index"),
     path("",homepage,name="homepage"),
+    path("about/",about,name="about"),
     path("login/employee/",login_user_employee, name= "login_employee"),
     path("login/it/",login_user_it, name= "login_it"),
     path("register/employee/", register_employee, name = "register_employee"),

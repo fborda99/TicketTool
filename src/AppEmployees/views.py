@@ -93,7 +93,7 @@ def employee_profile_user(request):
 @login_required
 def employee_edit_user_email(request):
     if request=="GET":
-        form=EmployeeUserEditEmailForm()
+        form=EmployeeUserEditEmailForm(initial={"email":request.user.email})
         return render(request,"AppEmployees/employee_user_update_email.html",{"form":form})
     
     else:
