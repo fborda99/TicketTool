@@ -17,7 +17,7 @@ def employees(request):
     return render(request, "AppEmployees/employees.html")
 
 @login_required
-def employees(request):
+def employees_list(request):
     employess=Employee.objects.all()
     context={"employees":employess}
     return render(request, "appEmployees/Employees_list.html", context)
