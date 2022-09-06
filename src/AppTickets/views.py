@@ -113,21 +113,7 @@ def register_employee(request):
         return render(request,"AppTickets/register_employee.html",{"form":form,"error":"Form not valid."})
 
 def register_it(request):
-    if request.method == "GET":
-        form=IT_TeamUserCustomCreationForm()#(initial={User.is_staff: True})
-        return render(request,"AppTickets/register_it_team.html",{"form":form})
-        
-    else:
-        form=IT_TeamUserCustomCreationForm(request.POST)
-    
-    if form.is_valid():
-     #   form.is_staff=True
-      #  form.User.is_staff=True
-        form.save()
-        return redirect("homepage")
-    
-    else:
-        return render(request,"AppTickets/register_it_team.html",{"form":form,"error":"Form not valid."})
+    return render(request,"AppTickets/register_it_team.html" )
 
 def create_ticket_employee(request):
     if request.method == "GET":

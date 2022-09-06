@@ -44,7 +44,7 @@ def IT_TeamCreate(request):
    
 class IT_TeamDelete(DeleteView):
     model=IT_Member
-    template_name = "AppIT_team/it_member_confirm_delete.html"
+    template_name = "AppIT_Team/it_member_confirm_delete.html"
     success_url="/AppIT_Team/list/"
 
 @login_required
@@ -65,7 +65,7 @@ def IT_TeamUpdate(request,id_IT_Member):
                 it_member.jobtitle=data.get("jobtitle")
                 it_member.save()
             except:
-                return HttpResponse("Update error")
+                return render(request,"AppMessages\it_form_error.html")
         return redirect("IT_Team_List")
 
 @login_required

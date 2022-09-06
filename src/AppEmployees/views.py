@@ -46,9 +46,9 @@ def EmployeeCreate(request):
             return HttpResponse("The form for creating the employee is not valid. Please try again!")
 
 class EmployeeDelete(DeleteView):
-     model = Employee
-     template_name = "AppEmployees/employee_confirm_delete.html"
-     success_url = "/AppEmployees/employees/"
+    model = Employee
+    template_name = "AppEmployees/employee_confirm_delete.html"
+    success_url = "/AppEmployees/employees/list"
 
 @login_required
 def EmployeeUpdate(request, id_employee):
@@ -62,7 +62,7 @@ def EmployeeUpdate(request, id_employee):
         if update_form.is_valid():
             data=update_form.cleaned_data
             try:
-                employee=employees.objects.get(id=id_employee)
+                employee=Employee.objects.get(id=id_employee)
                 employee.name=data.get("name")
                 employee.lastname=data.get("lastname")
                 employee.email=data.get("email")
@@ -70,7 +70,7 @@ def EmployeeUpdate(request, id_employee):
                 employee.workid=data.get("workid")
                 employee.save()   
             except:
-                return HttpResponse("Update error")
+                return render(request,"AppMessages\employee_form_error.html")
         return redirect("employee_list")
 
 class EmployeeDeatailView(DetailView):
