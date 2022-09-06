@@ -2,7 +2,7 @@ TICKET TOOL
 
     Ticket Tool is a web page that consists of the creation of tickets by employees, to be resolved by an IT team. Said tickets must consist of technological problems that the user may present for which technical assistance is required. This service can be used by companies that contract Ticket Tool as a solution to manage technological incidents.
 
-    The project was developed by Thomas Bransburg and Florencia Borda. In general terms, Thomas developed the AppEmployees and Florencia the AppIT_Team. Then, together they created the AppTickets and AppMessages.
+    The project was developed by Thomas Bransburg and Florencia Borda. In general terms, Thomas developed the AppEmployees and Florencia the AppIT_Team. Then, together they created the AppTickets and AppMessages and the all the necessary docuementation.
     
 UNIT TEST
 
@@ -44,3 +44,12 @@ VIEWS
     If you log in as an Employee User, you will be able to visualize the views mentioned in the AppEmployees. There, the user can visualize the Employees List with a ListView and also DetailView; and can update or delete registers from the list. In addition, the user can see, search, update and create tickets, as well as they can see, search and send messages. Finally, the user can visualize its profile, being able to update the email, password and upload an avatar.
     
     If you log in as an IT User, you will be able to visualize the views mentioned in the AppIT_Team. There, the user can visualize the IT Team Members List with a ListView and also DetailView; and can update or delete registers from the list. In addition, the user can see, search and update tickets, as well as they can see, search and send messages. Finally, the user can visualize its profile, being able to update the email, password and upload an avatar.
+   
+ HOW TO CREATE an IT Member
+    
+    1. Open the python Shell
+    2. Be localted at the same level as the "manage.py" file. This an be verify by writting the command "ls"
+    3. Run the command "Python .\manage.py createsupueruser"
+    4. input a username, email(optional) and password
+    5. Superuser has been succesfully created. Now you can log in as an IT Member
+    
